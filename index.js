@@ -33,8 +33,6 @@ btn_escalar.addEventListener('click', () =>{
         posição: inputposition
     });
 
-    // console.log(array);
-
     localStorage.setItem('Database', JSON.stringify(array)) ;
     JSON.parse(localStorage.getItem('Database'));
 
@@ -54,29 +52,21 @@ btn_escalar.addEventListener('click', () =>{
     document.getElementById('position').value = '';
 });
 
-let qtd = 0;
-var new_array = []
-
 let btn_remover = document.querySelector('#btn-remover');
 btn_remover.addEventListener('click', () => {
+    var new_array = [];
 
     let num_remove = document.querySelector('#num-rmv').value;
     let li_remove = document.querySelectorAll('li');
+    let local = JSON.parse(localStorage.getItem('Database'));
 
-    // array.forEach((element, index) => {
-    //     if(element.camisa == num_remove){
-    //         console.log(element)
-    //         array.splice(index, 1);
-    //         localStorage.setItem('Database', JSON.stringify(array));
-    //     }
-    // });
-
-    array.filter((element) => {
-        if(element.camisa != num_remove){
-            new_array.push(element);
-            localStorage.setItem('Database', JSON.stringify(new_array))
+    local.filter((element, index) => {
+        if(element.camisa == num_remove){
+            // console.log(index);
+            local.splice(index, 1);
+            localStorage.setItem('Database', JSON.stringify(local));
         }
-    })
+    });
 
     li_remove.forEach((element) => {
         if(element.className == num_remove){
